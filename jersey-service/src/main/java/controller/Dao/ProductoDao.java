@@ -1,30 +1,34 @@
 package controller.Dao;
 
-import models.Persona;
+import models.Producto;
 import controller.Dao.implement.AdapterDao;
 import controller.tda.list.LinkedList;
 
-public class PersonaDao extends AdapterDao<Persona> {
-    private Persona persona; 
-    private LinkedList<Persona> listAll;
+public class ProductoDao extends AdapterDao<Producto> {
+    private Producto producto; 
+    private LinkedList<Producto> listAll;
     
-    public PersonaDao(){
-        super(Persona.class);
+    public void setIdProducto(Producto producto) {
+
+    }
+
+    public ProductoDao(){
+        super(Producto.class);
         this.listAll = new LinkedList<>();
     }
 
-    public Persona getPersona() {
-        if (persona == null) {
-            persona = new Persona();
+    public Producto getProducto() {
+        if (producto == null) {
+            producto = new Producto();
         }
-        return this.persona;
+        return this.producto;
     }
 
-    public void setPersona(Persona persona){
-        this.persona = persona;
+    public void setProducto(Producto producto){
+        this.producto = producto;
     }
 
-    public LinkedList<Persona> getlistAll(){
+    public LinkedList<Producto> getlistAll(){
         if (listAll.isEmpty()) { 
             this.listAll = listAll(); 
         }
@@ -33,15 +37,15 @@ public class PersonaDao extends AdapterDao<Persona> {
 
     public Boolean save() throws Exception {
         Integer id = getlistAll().getSize() + 1;
-        persona.setIdPersona(id);
-        this.persist(this.persona);
+        producto.setIdProducto(id);
+        this.persist(this.producto);
         this.listAll = getlistAll(); 
         return true;
     }
 
     public Boolean update() throws Exception {
         try {
-            this.merge(getPersona(), getPersona().getIdPersona() - 1);
+            this.merge(getProducto(), getProducto().getIdProducto() - 1);
             this.listAll = getlistAll(); 
             return true;
         } catch (Exception e) {
@@ -51,16 +55,16 @@ public class PersonaDao extends AdapterDao<Persona> {
     }
 
     public Boolean delete(Integer id) throws Exception {
-        LinkedList<Persona> list = getlistAll(); 
-        Persona persona = get(id); 
-        if (persona != null) {
-            list.remove(persona); 
+        LinkedList<Producto> list = getlistAll(); 
+        Producto producto = get(id); 
+        if (producto != null) {
+            list.remove(producto); 
             String info = g.toJson(list.toArray());
             saveFile(info); 
             this.listAll = list;
             return true;
         } else {
-            System.out.println("Persona con id " + id + " no encontrada.");
+            System.out.println("Producto con id " + id + " no encontrada.");
             return false;
         }
     }
