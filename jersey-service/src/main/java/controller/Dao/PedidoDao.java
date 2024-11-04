@@ -14,8 +14,14 @@ public class PedidoDao extends AdapterDao<Pedido> {
     }
 
     public void setIdPedido(Pedido pedido) {
-        // Lógica para establecer el ID
+    int id = 1;
+    for (Pedido p : getListAll()) {
+        if (p.getId() >= id) {
+            id = p.getId() + 1;
+        }
     }
+    pedido.setId(id);
+}
 
     public Pedido getPedido() {
         if (pedido == null) {
