@@ -1,0 +1,10 @@
+com\example\rest\controller\PersonaController.class
+com\example\rest\main\Main.class
+com\example\rest\model\TipoIdentificacion.class
+com\example\rest\RestApplication.class
+com\example\rest\dao\implement\PersonaDaoImpl.class
+com\example\rest\model\Usuario.class
+com\example\rest\dao\PersonaDao.class
+com\example\rest\services\PersonaService.class
+com\example\rest\utils\JsonUtils.class
+com\example\rest\model\Persona.class
