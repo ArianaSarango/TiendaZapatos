@@ -1,0 +1,7 @@
+/*
+Custom Css
+*/
+.nav-link:hover {
+    color: green; /* Cambia 'green' por el color que desees */
+    transition: color 0.3s; /* (Opcional) Suaviza la transición */
+}
