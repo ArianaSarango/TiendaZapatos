@@ -1,14 +1,13 @@
 package controller.Dao;
 
 import models.Persona;
-import models.Producto;
 import models.TipoIdentificacion;
 import controller.Dao.implement.AdapterDao;
 import controller.tda.list.LinkedList;
 
 public class PersonaDao extends AdapterDao<Persona>{
     private Persona persona;
-    private LinkedList listAll;
+    private LinkedList<Persona> listAll;
 
     public PersonaDao() {
         super(Persona.class);
@@ -25,7 +24,7 @@ public class PersonaDao extends AdapterDao<Persona>{
         this.persona = persona;
     }
 
-    public LinkedList getListAll() {
+    public LinkedList<Persona> getListAll() {
         if (listAll == null) {
             this.listAll = listAll();
         }

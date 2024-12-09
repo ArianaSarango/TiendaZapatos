@@ -1,10 +1,8 @@
 package controller.Dao.servicies;
 
 import controller.Dao.PersonaDao;
-import controller.Dao.ProveedorDao;
 import controller.tda.list.LinkedList;
 import models.Persona;
-import models.Proveedor;
 import models.TipoIdentificacion;
 
 public class PersonaServices {
@@ -27,7 +25,7 @@ public class PersonaServices {
         return obj.delete(id);
     }
 
-    public LinkedList ListAll() {
+    public LinkedList<Persona> ListAll() {
         return obj.getListAll();
     }
 

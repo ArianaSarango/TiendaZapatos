@@ -1,6 +1,5 @@
 package controller.Dao;
 
-import models.Producto;
 import models.Usuario;
 import controller.Dao.implement.AdapterDao;
 import controller.tda.list.LinkedList;
@@ -8,7 +7,7 @@ import controller.tda.list.LinkedList;
 
 public class UsuarioDao extends AdapterDao<Usuario>{
     private Usuario usuario;
-    private LinkedList listAll;
+    private LinkedList<Usuario> listAll;
 
     public UsuarioDao() {
         super(Usuario.class);
@@ -25,7 +24,7 @@ public class UsuarioDao extends AdapterDao<Usuario>{
         this.usuario = usuario;
     }
 
-    public LinkedList getListAll() {
+    public LinkedList<Usuario> getListAll() {
         if (listAll == null) {
             this.listAll = listAll();
         }
