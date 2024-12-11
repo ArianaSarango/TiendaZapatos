@@ -8,8 +8,8 @@ public class Pedido {
     private int id;
     private Producto producto;
     private int cantidadSolicitada;
-    private Date fechaPedido;
-    private Date fecha;
+    private String fechaPedido;
+    private String fecha;
     private Proveedor proveedor;
     private boolean recibido;
 
