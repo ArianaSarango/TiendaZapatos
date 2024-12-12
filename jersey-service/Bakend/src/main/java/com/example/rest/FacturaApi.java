@@ -1,10 +1,4 @@
 package com.example.rest;
-<<<<<<< HEAD
-
-import controller.Dao.servicies.FacturaServicies;
-import models.EstadoPago;
-=======
->>>>>>> origin/Juan
 
 import java.util.HashMap;
 import javax.validation.Valid;
