@@ -9,7 +9,9 @@ public class FacturaServicies {
     private FacturaDao facturaDao;
 
     public FacturaServicies() {
-        this.facturaDao = new FacturaDao();
+
+        facturaDao = new FacturaDao();
+  
     }
 
     public Factura getFactura() {
@@ -24,6 +26,11 @@ public class FacturaServicies {
         return facturaDao.getLisAll();
     }
 
+    public Factura get(Integer id) throws Exception {
+        return facturaDao.get(id);
+    }
+
+  
     public Boolean save() throws Exception {
         return facturaDao.save();
     }
@@ -32,7 +39,17 @@ public class FacturaServicies {
         return facturaDao.update();
     }
 
-    public Boolean delete(int abc) throws Exception {
-        return facturaDao.delete(abc);
+
+    // public Boolean delete(int id) throws Exception {
+    //     return facturaDao.delete(id);
+    // }
+
+    public Boolean delete(int id) throws Exception {
+        return facturaDao.delete(id);
+    }
+    
+    public Boolean delete(Integer id) throws Exception {
+        return facturaDao.delete(id);
+  
     }
 }
