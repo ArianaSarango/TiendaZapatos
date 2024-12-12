@@ -74,9 +74,5 @@ public class KardexDao extends AdapterDao<Kardex> {
     //         return false;
     //     }
     // }
-<<<<<<< HEAD
-}
       
-=======
 }
->>>>>>> origin/Juan
