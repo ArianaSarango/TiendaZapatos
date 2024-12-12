@@ -36,7 +36,15 @@ public class FacturaServicies {
         return facturaDao.update();
     }
 
+    // public Boolean delete(int id) throws Exception {
+    //     return facturaDao.delete(id);
+    // }
+
     public Boolean delete(int id) throws Exception {
+        return facturaDao.delete(id);
+    }
+    
+    public Boolean delete(Integer id) throws Exception {
         return facturaDao.delete(id);
     }
 }

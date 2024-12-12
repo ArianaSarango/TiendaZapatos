@@ -1,6 +1,7 @@
 package controller.tda.list;
 
 import controller.tda.list.LinkedList;
+import models.Factura;
 
 import java.lang.reflect.Method;
 
@@ -253,18 +254,18 @@ public class LinkedList<E> {
         }
     }
 
-    public E remove(Integer post) throws ListEmptyException {
+    public E remove(int index) throws ListEmptyException {
         if (isEmpty()) {
             throw new ListEmptyException("Error, lista vacia");
-        } else if (post < 0 || post >= size) {
+        } else if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Error, fuera de rango");
-        } else if (post == 0) {
+        } else if (index == 0) {
             return removeFirst();
-        } else if (post == (size - 1)) {
+        } else if (index == (size - 1)) {
             return removeLast();
         } else {
-            Node<E> preview = getNode(post - 1);
-            Node<E> actually = getNode(post);
+            Node<E> preview = getNode(index - 1);
+            Node<E> actually = getNode(index);
             E element = preview.getInfo();
             Node<E> next = actually.getNext();
             actually = null;

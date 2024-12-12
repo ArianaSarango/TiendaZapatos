@@ -10,7 +10,7 @@ import com.google.gson.Gson;
 import controller.tda.list.LinkedList;
 public class AdapterDao<T> implements InterfazDao<T> {
     private Class<T> clazz;
-    private Gson g;
+    protected Gson g;
 
     // Cambiamos a una ruta absoluta en la raíz del proyecto
     public static String filePath = "data/"; // src/main/java/Data/
@@ -115,7 +115,7 @@ public class AdapterDao<T> implements InterfazDao<T> {
         return sb.toString().trim();
     }
 
-    private void saveFile(String data) throws Exception {
+    public void saveFile(String data) throws Exception {
         File file = new File(filePath + clazz.getSimpleName() + ".json");
         file.getParentFile().mkdirs();
 
