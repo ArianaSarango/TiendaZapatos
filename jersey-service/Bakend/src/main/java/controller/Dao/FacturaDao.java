@@ -1,10 +1,7 @@
 package controller.Dao;
 
 import models.Factura;
-<<<<<<< HEAD
-import java.util.List;
-=======
->>>>>>> origin/Juan
+  
 import controller.Dao.implement.AdapterDao;
 import controller.tda.list.LinkedList;
 
@@ -12,14 +9,10 @@ public class FacturaDao extends AdapterDao<Factura>{
     private Factura factura = new Factura();
     private LinkedList<Factura> listAll;
 
-<<<<<<< HEAD
-    public FacturaDao() {
-        super(Factura.class);
-        this.listAll = new LinkedList<>();
-=======
+
     public FacturaDao(){
         super(Factura.class);
->>>>>>> origin/Juan
+  
     }
     
     public Factura getFactura() {
@@ -34,12 +27,11 @@ public class FacturaDao extends AdapterDao<Factura>{
     }
 
     public LinkedList<Factura> getLisAll() {
-<<<<<<< HEAD
-=======
+
         if (listAll == null) {
             this.listAll = listAll();
         }
->>>>>>> origin/Juan
+  
         return listAll;
     }
 
@@ -57,13 +49,6 @@ public class FacturaDao extends AdapterDao<Factura>{
         return true;
     }
 
-<<<<<<< HEAD
-    public Boolean delete(int abc) throws Exception{
-        this.delete(abc);
-        this.listAll = listAll();
-        return true;
-    }
-=======
     // public Boolean delete(int id) throws Exception{
     //     this.supreme(id);
     //     this.listAll = listAll();
@@ -107,5 +92,5 @@ public class FacturaDao extends AdapterDao<Factura>{
         }
     }
     
->>>>>>> origin/Juan
+  
 }

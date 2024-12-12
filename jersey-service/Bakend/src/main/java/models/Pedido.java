@@ -16,7 +16,7 @@ public class Pedido {
 
     public Pedido() {}
 
-    public Pedido(int id, Producto producto, int cantidadSolicitada, Date fechaPedido, Date fecha, Proveedor proveedor, boolean recibido) {
+    public Pedido(int id, Producto producto, int cantidadSolicitada, String fechaPedido, String fecha, Proveedor proveedor, boolean recibido) {
         this.id = id;
         this.producto = producto;
         this.cantidadSolicitada = cantidadSolicitada;
@@ -35,19 +35,19 @@ public class Pedido {
     public int getCantidadSolicitada() { return cantidadSolicitada; }
     public void setCantidadSolicitada(int cantidadSolicitada) { this.cantidadSolicitada = cantidadSolicitada; }
 
-    public Date getFechaPedido() {
+    public String getFechaPedido() {
         return fechaPedido;
     }
-    public void setFechaPedido(Date fechaPedido) {
+    public void setFechaPedido(String fechaPedido) {
         this.fechaPedido = fechaPedido;
     }
-    public void setFechaPedidoFromString(String fechaStr) throws ParseException {
+    public void setFechaPedidoFromDate(Date fechaStr) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        this.fechaPedido = dateFormat.parse(fechaStr);
-    }
+        this.fechaPedido = dateFormat.format(fechaStr); 
+    }    
     
-    public Date getFecha() { return fecha; }
-    public void setFecha(Date fecha) { this.fecha = fecha; }
+    public String getFecha() { return fecha; }
+    public void setFecha(String fecha) { this.fecha = fecha; }
 
     public Proveedor getProveedor() { return proveedor; }
     public void setProveedor(Proveedor proveedor) { this.proveedor = proveedor; }
