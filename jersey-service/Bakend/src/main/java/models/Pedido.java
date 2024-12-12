@@ -10,10 +10,7 @@ public class Pedido {
     private int cantidadSolicitada;
     private String fechaPedido;
     private String fecha;
-=======
-    private Date fechaPedido;
-    private Date fecha;
->>>>>>> origin/Juan
+
     private Proveedor proveedor;
     private boolean recibido;
 
