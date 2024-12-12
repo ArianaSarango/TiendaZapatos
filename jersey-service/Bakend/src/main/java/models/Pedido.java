@@ -8,7 +8,6 @@ public class Pedido {
     private int id;
     private Producto producto;
     private int cantidadSolicitada;
-<<<<<<< HEAD
     private String fechaPedido;
     private String fecha;
 =======
