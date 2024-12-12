@@ -60,6 +60,7 @@ public class ProductoDao extends AdapterDao<Producto> {
         return true;
     }
 
+<<<<<<< HEAD
      public Boolean delete(Integer id) throws Exception {
          LinkedList<Producto> list = getlistAll(); 
          Producto producto = get(id); 
@@ -74,4 +75,20 @@ public class ProductoDao extends AdapterDao<Producto> {
             return false;
      }
      }
+=======
+    // public Boolean delete(Integer id) throws Exception {
+    //     LinkedList<Producto> list = getlistAll(); 
+    //     Producto producto = get(id); 
+    //     if (producto != null) {
+    //         list.remove(producto);
+    //         String info = g.toJson(list.toArray());
+    //         saveFile(info); 
+    //         this.listAll = list;
+    //         return true;
+    //     } else {
+    //         System.out.println("Producto con id " + id + " no encontrada.");
+    //         return false;
+    //     }
+    // }
+>>>>>>> origin/Juan
 }
