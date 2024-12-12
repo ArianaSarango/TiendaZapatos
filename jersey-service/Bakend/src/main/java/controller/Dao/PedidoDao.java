@@ -66,22 +66,6 @@ public class PedidoDao extends AdapterDao<Pedido> {
         return true;
     }
 
-<<<<<<< HEAD
-     public Boolean delete(Integer id) throws Exception {
-         LinkedList<Pedido> list = getListAll();
-         Pedido pedido = get(id);
-         if (pedido != null) {
-             list.remove(pedido);
-             String info = g.toJson(list.toArray());
-             saveFile(info);
-             this.listAll = list;
-             return true;
-         } else {
-             System.out.println("Pedido con id " + id + " no encontrado.");
-             return false;
-         }
-     }
-=======
     // public Boolean delete(Integer id) throws Exception {
     //     LinkedList<Pedido> list = getListAll();
     //     Pedido pedido = get(id);
@@ -96,5 +80,4 @@ public class PedidoDao extends AdapterDao<Pedido> {
     //         return false;
     //     }
     // }
->>>>>>> origin/Juan
 }
