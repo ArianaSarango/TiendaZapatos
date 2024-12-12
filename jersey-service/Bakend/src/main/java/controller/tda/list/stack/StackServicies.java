@@ -1,14 +1,14 @@
-package controller.tda.list.stack;
+// package controller.tda.list.stack;
 
-// import controller.tda.list.ListEmptyException;
+// // import controller.tda.list.ListEmptyException;
 
-public class StackServicies {
+// public class StackServicies {
 
-        private Stack obj;
-    public StackServicies(){ //Constructor de la clase
-        obj = new Stack(); //Instancia un objeto de la clase FamiliaDao
-    }
+//         private Stack obj;
+//     public StackServicies(){ //Constructor de la clase
+//         obj = new Stack(); //Instancia un objeto de la clase FamiliaDao
+//     }
 
 
     
-}
+// }

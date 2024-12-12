@@ -3,7 +3,7 @@ package models;
 import java.util.Date;
 
 public class Factura {
-    private int idFactura;
+    private Integer idFactura;
     private int numeroFactura;
     private Date fechaEmision;
     private Double subtotal;
@@ -14,16 +14,16 @@ public class Factura {
 
     // constructor
 
-    public Factura( int idFactura, int numeroFactura, Date fechaEmision, Double subtotal, float IVA, float descuento, Double totalFactura, EstadoPago estadoPago){
-        this.idFactura = idFactura;
-        this.numeroFactura = numeroFactura;
-        this.fechaEmision = fechaEmision;
-        this.subtotal = subtotal;
-        this.IVA = IVA;
-        this.descuento = descuento;
-        this.totalFactura = totalFactura;
-        this.estadoPago = estadoPago;
-    }
+    // public Factura( Integer idFactura, int numeroFactura, Date fechaEmision, Double subtotal, float IVA, float descuento, Double totalFactura, EstadoPago estadoPago){
+    //     this.idFactura = idFactura;
+    //     this.numeroFactura = numeroFactura;
+    //     this.fechaEmision = fechaEmision;
+    //     this.subtotal = subtotal;
+    //     this.IVA = IVA;
+    //     this.descuento = descuento;
+    //     this.totalFactura = totalFactura;
+    //     this.estadoPago = estadoPago;
+    // }
 
     public Factura() {
     }
@@ -34,7 +34,7 @@ public class Factura {
         return this.idFactura;
     }
 
-    public void setIdFactura(int idFactura) {
+    public void setIdFactura(Integer idFactura) {
         this.idFactura = idFactura;
     }
 

@@ -1,0 +1,11 @@
+[
+    {
+        "idFactura": 1,
+        "numeroFactura": 12345,
+        "subtotal": 100.5,
+        "IVA": 12.5,
+        "descuento": 5.0,
+        "totalFactura": 108.0,
+        "estadoPago": "PENDIENTE"
+    }
+]
