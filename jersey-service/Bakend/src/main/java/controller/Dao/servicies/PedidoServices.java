@@ -19,6 +19,10 @@ public class PedidoServices {
         return obj.update();
     }
 
+    public Boolean delete(int id) throws Exception {
+        return obj.delete(id);
+    }
+
     public Boolean delete(Integer id) throws Exception {
         return obj.delete(id);
     }

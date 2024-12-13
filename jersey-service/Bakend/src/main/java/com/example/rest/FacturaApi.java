@@ -18,6 +18,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import java.io.FileInputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -99,37 +101,42 @@ public class FacturaApi {
         }
     }
 
-    @Path("/update")
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response update(HashMap map) {
-        // todo
-        // Validation
+    // @Path("/update")
+    // @POST
+    // @Consumes(MediaType.APPLICATION_JSON)
+    // @Produces(MediaType.APPLICATION_JSON)
+    // public Response update(HashMap map) {
+    //     // todo
+    //     // Validation
 
-        HashMap res = new HashMap<>();
+    //     HashMap res = new HashMap<>();
 
-        try {
-            FacturaServicies fs = new FacturaServicies();
-            fs.getFactura().setNumeroFactura(Integer.parseInt(map.get("0").toString())); // int
-            // fs.getFactura().setFechaEmision((Date) map.get("fechaEmision")); // Date
-            fs.getFactura().setSubtotal(Double.parseDouble(map.get("subtotal").toString())); // double
-            fs.getFactura().setIVA(Float.parseFloat(map.get("IVA").toString())); // float
-            fs.getFactura().setDescuento(Float.parseFloat(map.get("descuento").toString())); // float
-            fs.getFactura().setTotalFactura(Double.parseDouble(map.get("totalFactura").toString())); // double
-            fs.getFactura().setEstadoPago(EstadoPago.valueOf(map.get("estadoPago").toString())); // Enum (EstadoPago)
+    //     try {
+    //         FacturaServicies fs = new FacturaServicies();
+    //         fs.getFactura().setNumeroFactura(Integer.parseInt(map.get("0").toString()));
+    //         // int
+    //         fs.getFactura().setFechaEmision((String) map.get("fechaEmision")); // fecha de emision
+    //         fs.getFactura().setSubtotal(Double.parseDouble(map.get("subtotal").toString()));
+    //         // double
+    //         fs.getFactura().setIVA(Float.parseFloat(map.get("IVA").toString())); // float
+    //         fs.getFactura().setDescuento(Float.parseFloat(map.get("descuento").toString()));
+    //         // float
+    //         fs.getFactura().setTotalFactura(Double.parseDouble(map.get("totalFactura").toString()));
+    //         // double
+    //         fs.getFactura().setEstadoPago(EstadoPago.valueOf(map.get("estadoPago").toString()));
+    //         // Enum (EstadoPago)
 
-            fs.update();
-            res.put("msg", "Ok");
-            res.put("data", "Guardado correctamente");
-            return Response.ok(res).build();
+    //         fs.update();
+    //         res.put("msg", "Ok");
+    //         res.put("data", "Guardado correctamente");
+    //         return Response.ok(res).build();
 
-        } catch (Exception e) {
-            res.put("msg", "Error");
-            res.put("data", e.toString());
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
-        }
-    }
+    //     } catch (Exception e) {
+    //         res.put("msg", "Error");
+    //         res.put("data", e.toString());
+    //         return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
+    //     }
+    // }
 
     @Path("/listType")
 

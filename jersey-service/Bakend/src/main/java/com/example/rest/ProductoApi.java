@@ -9,6 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -138,32 +139,30 @@ public class ProductoApi {
         }
     }
 
-    @Path("/delete")
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/delete/{id}")
+    @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    public Response delete(HashMap<String, Object> map) {
+    public Response deleteProducto(@PathParam("id") int id) {
         HashMap<String, Object> res = new HashMap<>();
 
         try {
             ProductoServices ps = new ProductoServices();
-            Integer id = Integer.parseInt(map.get("idProducto").toString());
-            
-            Boolean success = ps.delete(id);
-            if (success) {
-                res.put("msg", "Ok");
-                res.put("data", "Eliminado correctamente");
+            System.out.println("Intentando eliminar producto con ID: " + id);
+
+            boolean productodelete = ps.delete(id); // Eliminar directamente por ID
+
+            if (productodelete) {
+                res.put("message", "producto eliminada exitosamente");
                 return Response.ok(res).build();
             } else {
-                res.put("msg", "Error");
-                res.put("data", "Producto no encontrada");
-                return Response.status(Status.NOT_FOUND).entity(res).build();
+                res.put("message", "producto no encontrada o no pudo ser eliminada");
+                return Response.status(Response.Status.NOT_FOUND).entity(res).build();
             }
         } catch (Exception e) {
-            System.out.println("Error en delete data: " + e.toString());
-            res.put("msg", "Error");
-            res.put("data", e.toString());
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
+            e.printStackTrace();
+            res.put("message", "Error al intentar eliminar la producto");
+            res.put("error", e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
     }
 }

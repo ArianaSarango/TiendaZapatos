@@ -18,6 +18,10 @@ public class ProductoServices {
     public Boolean delete(Integer id) throws Exception {
         return obj.delete(id); // Llamar al método delete de ProductoDao
     }
+
+    public Boolean delete(int id) throws Exception {
+        return obj.delete(id);
+    }
     
     public LinkedList<Producto> listAll(){
         return obj.getlistAll();

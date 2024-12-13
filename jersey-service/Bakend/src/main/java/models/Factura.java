@@ -5,7 +5,7 @@ import java.util.Date;
 public class Factura {
     private Integer idFactura;
     private int numeroFactura;
-    private Date fechaEmision;
+    private String fechaEmision;
     private Double subtotal;
     private float IVA;
     private float descuento;
@@ -46,11 +46,11 @@ public class Factura {
         this.numeroFactura = numeroFactura;
     }
 
-    public Date getFechaEmision() {
+    public String getFechaEmision() {
         return this.fechaEmision;
     }
 
-    public void setFechaEmision(Date fechaEmision) {
+    public void setFechaEmision(String fechaEmision) {
         this.fechaEmision = fechaEmision;
     }
 

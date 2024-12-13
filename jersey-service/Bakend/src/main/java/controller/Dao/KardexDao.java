@@ -1,6 +1,7 @@
 package controller.Dao;
 
 import models.Kardex;
+import models.Kardex;
 import controller.Dao.implement.AdapterDao;
 import controller.tda.list.LinkedList;
 ;
@@ -54,25 +55,41 @@ public class KardexDao extends AdapterDao<Kardex> {
         }
     }
 
-    public Boolean delete(int abc) throws Exception{
-        this.delete(abc);
-        this.listAll = listAll();
-        return true;
+    public Boolean delete(int idKardex) throws Exception {
+        LinkedList<Kardex> kardexs = listAll(); // Obtener todas las kardexs
+    
+        // Buscar el índice de la kardex con el ID dado
+        int indexToRemove = -1;
+        for (int i = 0; i < kardexs.getSize(); i++) {
+            if (kardexs.get(i).getIdKardex() == idKardex) {
+                indexToRemove = i;
+                break;
+            }
+        }
+    
+        if (indexToRemove != -1) {
+            // Si se encuentra el índice, eliminar la kardex
+            supreme(indexToRemove);
+            return true;
+        } else {
+            // Si no se encuentra, lanzar una excepción
+            throw new Exception("Kardex con ID " + idKardex + " no encontrada");
+        }
     }
 
-    // public Boolean delete(Integer id) throws Exception {
-    //     LinkedList<Kardex> list = getlistAll(); 
-    //     Kardex kardex = get(id); 
-    //     if (kardex != null) {
-    //         list.remove(kardex);
-    //         String info = g.toJson(list.toArray());
-    //         saveFile(info); 
-    //         this.listAll = list;
-    //         return true;
-    //     } else {
-    //         System.out.println("Kardex con id " + id + " no encontrada.");
-    //         return false;
-    //     }
-    // }
+    public Boolean delete(Integer id) throws Exception {
+        LinkedList<Kardex> list = getlistAll(); 
+        Kardex kardex = get(id); 
+        if (kardex != null) {
+            list.remove(0);
+            String info = g.toJson(list.toArray());
+            saveFile(info); 
+            this.listAll = list;
+            return true;
+        } else {
+            System.out.println("Kardex con id " + id + " no encontrada.");
+            return false;
+        }
+    }
 
 }

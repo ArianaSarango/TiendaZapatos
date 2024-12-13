@@ -116,32 +116,30 @@ public class PedidoApi {
         }
     }
 
-    @Path("/delete")
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/delete/{id}")
+    @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    public Response delete(HashMap<String, Object> map) {
+    public Response delete(@PathParam("id") Integer id) {
         HashMap<String, Object> res = new HashMap<>();
 
         try {
             PedidoServices ps = new PedidoServices();
-            Integer id = Integer.parseInt(map.get("id").toString());
+            System.out.println("Intentando eliminar pedido con ID: " + id);
 
-            Boolean success = ps.delete(id);
-            if (success) {
-                res.put("msg", "Ok");
-                res.put("data", "Eliminado correctamente");
+            boolean pedidodelete = ps.delete(id); // Eliminar directamente por ID
+
+            if (pedidodelete) {
+                res.put("message", "Pedido eliminada exitosamente");
                 return Response.ok(res).build();
             } else {
-                res.put("msg", "Error");
-                res.put("data", "Pedido no encontrado");
-                return Response.status(Status.NOT_FOUND).entity(res).build();
+                res.put("message", "Pedido no encontrada o no pudo ser eliminada");
+                return Response.status(Response.Status.NOT_FOUND).entity(res).build();
             }
         } catch (Exception e) {
             e.printStackTrace();
-            res.put("msg", "Error");
-            res.put("data", e.toString());
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
+            res.put("message", "Error al intentar eliminar la pedido");
+            res.put("error", e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
     }
 }

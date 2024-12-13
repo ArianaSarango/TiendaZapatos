@@ -35,9 +35,9 @@ public class FacturaServicies {
         return facturaDao.save();
     }
 
-    public Boolean update() throws Exception {
-        return facturaDao.update();
-    }
+    // public Boolean update() throws Exception {
+    //     return facturaDao.update();
+    // }
 
 
     // public Boolean delete(int id) throws Exception {
