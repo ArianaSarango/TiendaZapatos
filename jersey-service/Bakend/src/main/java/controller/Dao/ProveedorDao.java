@@ -60,11 +60,40 @@ public class ProveedorDao extends AdapterDao<Proveedor> {
         }
     }
 
-    public Boolean delete(int abc) throws Exception{
-        this.delete(abc);
-        this.listAll = listAll();
-        return true;
+    public Boolean delete(Integer idProveedor) throws Exception {
+        LinkedList<Proveedor> proveedores = getListAll();  // Obtener todos los proveedores
+    
+        // Buscar el índice del proveedor con el ID proporcionado
+        int indexToRemove = -1;
+        for (int i = 0; i < proveedores.getSize(); i++) {
+            if (proveedores.get(i).getId() == idProveedor) {
+                indexToRemove = i;  // Encontramos el proveedor, guardamos su índice
+                break;
+            }
+        }
+    
+        if (indexToRemove != -1) {
+            // Si encontramos el proveedor, eliminarlo por su índice
+            proveedores.remove(indexToRemove);
+            
+            // Convertir la lista actualizada a JSON (si es necesario)
+            String info = g.toJson(proveedores.toArray());
+    
+            // Guardar el archivo actualizado
+            saveFile(info);
+    
+            // Actualizar la lista en memoria
+            this.listAll = proveedores;
+    
+            return true;  // Proveedor eliminado con éxito
+        } else {
+            // Si el proveedor no se encuentra, lanzar una excepción
+            throw new Exception("Proveedor con ID " + idProveedor + " no encontrado");
+        }
     }
+    
+    
+    
     // public Boolean delete(Integer id) throws Exception {
     //     LinkedList<Proveedor> list = getListAll();
     //     Proveedor proveedor = get(id);

@@ -52,4 +52,8 @@ public class FacturaServicies {
         return facturaDao.delete(id);
   
     }
+
+    public LinkedList<Factura> search_by_person(Integer id) {
+        return facturaDao.search_by_person(id);
+    }
 }

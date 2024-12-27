@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Factura {
     private Integer idFactura;
+    private Persona persona;
     private int numeroFactura;
     private Date fechaEmision;
     private Double subtotal;
@@ -36,6 +37,18 @@ public class Factura {
 
     public void setIdFactura(Integer idFactura) {
         this.idFactura = idFactura;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+    public Integer getIdPersona() {
+        return persona.getIdPersona();
     }
 
     public int getNumeroFactura() {

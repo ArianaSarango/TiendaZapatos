@@ -104,31 +104,28 @@ public class ProveedorApi {
         }
     }
 
-    @Path("/delete")
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response delete(HashMap<String, Object> map) {
-        HashMap<String, Object> res = new HashMap<>();
-
-        try {
-            ProveedorServices ps = new ProveedorServices();
-            Integer id = Integer.parseInt(map.get("id").toString());
-
-            Boolean success = ps.delete(id);
-            if (success) {
-                res.put("msg", "Ok");
-                res.put("data", "Eliminado correctamente");
-                return Response.ok(res).build();
-            } else {
-                res.put("msg", "Error");
-                res.put("data", "Proveedor no encontrado");
-                return Response.status(Status.NOT_FOUND).entity(res).build();
-            }
-        } catch (Exception e) {
+    @Path("/delete/{id}")
+@DELETE
+@Produces(MediaType.APPLICATION_JSON)
+public Response delete(@PathParam("id") Integer id) {
+    HashMap<String, Object> res = new HashMap<>();
+    try {
+        ProveedorServices ps = new ProveedorServices();
+        Boolean success = ps.delete(id);  // Llamamos al servicio para eliminar el proveedor
+        if (success) {
+            res.put("msg", "Ok");
+            res.put("data", "Proveedor eliminado correctamente");
+            return Response.ok(res).build();  // Respuesta exitosa
+        } else {
             res.put("msg", "Error");
-            res.put("data", e.toString());
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
+            res.put("data", "Proveedor no encontrado");
+            return Response.status(Status.NOT_FOUND).entity(res).build();  // Respuesta de no encontrado
         }
+    } catch (Exception e) {
+        res.put("msg", "Error");
+        res.put("data", e.getMessage());  // Usar getMessage() para obtener un mensaje más limpio
+        return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();  // Respuesta de error
     }
+}
+
 }

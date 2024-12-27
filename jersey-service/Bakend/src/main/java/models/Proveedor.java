@@ -2,6 +2,8 @@ package models;
 
 import java.util.Objects;
 
+import controller.tda.list.LinkedList;
+
 public class Proveedor {
     private int id;
     private String nombre;
@@ -9,14 +11,19 @@ public class Proveedor {
     private String telefono;
     private String email;
 
+    //relacion 1 a muchos proveedor --> pedidos
+    private LinkedList<Pedido> pedidos;
+
     public Proveedor() {}
 
-    public Proveedor(int id, String nombre, String contacto, String telefono, String email) {
+    public Proveedor(int id, String nombre, String contacto, String telefono, String email,
+            LinkedList<Pedido> pedidos) {
         this.id = id;
         this.nombre = nombre;
         this.contacto = contacto;
         this.telefono = telefono;
         this.email = email;
+        this.pedidos = pedidos;
     }
 
     public int getId() { return id; }
@@ -68,5 +75,13 @@ public class Proveedor {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public LinkedList<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(LinkedList<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 }

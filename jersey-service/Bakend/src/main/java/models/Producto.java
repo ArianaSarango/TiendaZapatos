@@ -1,5 +1,7 @@
 package models;
 
+import controller.tda.list.LinkedList;
+
 public class Producto {
     private int idProducto;
     private int stock;
@@ -10,9 +12,12 @@ public class Producto {
     private String tipoZapato;
     private String color;
 
-    // Constructor
+    //relacion muchos a muchos pedidos --> productos
+    private LinkedList<Pedido> pedidos; 
 
-    public Producto(int idProducto, int stock, float precio, String modelo, String marca, String talla, String tipoZapato, String color) {
+    // Constructor
+    public Producto(int idProducto, int stock, float precio, String modelo, String marca, String talla,
+        String tipoZapato, String color, LinkedList<Pedido> pedidos) {
         this.idProducto = idProducto;
         this.stock = stock;
         this.precio = precio;
@@ -21,6 +26,7 @@ public class Producto {
         this.talla = talla;
         this.tipoZapato = tipoZapato;
         this.color = color;
+        this.pedidos = pedidos;
     }
 
     public Producto() {
@@ -77,5 +83,14 @@ public class Producto {
     public void setColor(String color) {
         this.color = color;
     }
+
+    public LinkedList<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(LinkedList<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+    
 
 }
