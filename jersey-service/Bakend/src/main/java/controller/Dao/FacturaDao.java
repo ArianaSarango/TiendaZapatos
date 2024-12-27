@@ -1,7 +1,7 @@
 package controller.Dao;
 
 import models.Factura;
-  
+
 import controller.Dao.implement.AdapterDao;
 import controller.tda.list.LinkedList;
 
@@ -91,6 +91,23 @@ public class FacturaDao extends AdapterDao<Factura>{
             throw new Exception("Factura con ID " + idFactura + " no encontrada");
         }
     }
-    
+
+
+    //buscar por persona
+    public LinkedList<Factura> search_by_person(Integer id) {
+        LinkedList<Factura> lista = new LinkedList<>();
+        LinkedList<Factura> listita = listAll();
+        if (listita.isEmpty()) {
+            Factura[] aux = listita.toArray();
+            for (int i = 0; i < aux.length; i++) {
+                    if (aux[i].getIdPersona().intValue() == id.intValue()) {
+                        System.out.println("****"+ aux[i].getIdPersona());
+                    }
+            }
+            
+        }
+        return lista;
+        
+    }
   
 }
