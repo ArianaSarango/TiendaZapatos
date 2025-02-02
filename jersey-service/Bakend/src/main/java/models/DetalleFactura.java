@@ -8,6 +8,9 @@ public class DetalleFactura {
     private int cantidadProductos;
     private int idDetalleFactura;
 
+    // relación muchos a uno detalleFactura --> producto
+    private Producto producto;
+
     // constructor
 
     public DetalleFactura(int id, int idProducto, Double precioProducto, /*Persona cliente,*/ int cantidadProductos){
@@ -16,6 +19,7 @@ public class DetalleFactura {
         //this.cliente = cliente;
         this.cantidadProductos = cantidadProductos;
         this.id = id;
+        this.producto = producto;
 
     }
 
@@ -70,6 +74,14 @@ public class DetalleFactura {
 
     public void setCantidadProductos(int cantidadProductos) {
         this.cantidadProductos = cantidadProductos;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
     
 }
