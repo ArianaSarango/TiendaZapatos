@@ -9,6 +9,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import com.example.annotations.JWTTokenNeeded;
+
 @Path("usuario")
 public class UsuarioApi {
 
@@ -16,6 +18,7 @@ public class UsuarioApi {
     @Path("/list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @JWTTokenNeeded
     public Response getAllUsuarios() {
         HashMap<String, Object> map = new HashMap<>();
         UsuarioServices us = new UsuarioServices();
@@ -46,7 +49,7 @@ public class UsuarioApi {
         map.put("msg", "Ok");
         map.put("data", us.getUsuario());
 
-        if (us.getUsuario() == null || us.getUsuario().getIdUser() == 0) {
+        if (us.getUsuario() == null || us.getUsuario().getIdUsuario() == 0) {
             map.put("msg", "No se encontró Usuario con ese identificador");
             return Response.status(Status.NOT_FOUND).entity(map).build();
         }
@@ -65,10 +68,11 @@ public class UsuarioApi {
 
         try {
             Usuario usuario = us.getUsuario();
-            usuario.setUser(map.get("user").toString());
+            usuario.setUsuario(map.get("user").toString());
             usuario.setPassword(map.get("password").toString());
             usuario.setEmail(map.get("email").toString());
-            usuario.setEstado(Boolean.parseBoolean(map.get("estado").toString()));
+            usuario.setEstado(map.get("estado").toString());
+            usuario.setRol(map.get("rol").toString());
 
             us.save();
             res.put("msg", "Ok");
@@ -92,10 +96,11 @@ public class UsuarioApi {
 
         try {
             Usuario usuario = us.getUsuario();
-            usuario.setUser(map.get("user").toString());
+            usuario.setUsuario(map.get("usuario").toString());
             usuario.setPassword(map.get("password").toString());
             usuario.setEmail(map.get("email").toString());
-            usuario.setEstado(Boolean.parseBoolean(map.get("estado").toString()));
+            usuario.setEstado(map.get("estado").toString());
+            usuario.setRol(map.get("rol").toString());
 
             us.update();
             res.put("msg", "Ok");
@@ -136,4 +141,6 @@ public class UsuarioApi {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
     }
+
+    
 }

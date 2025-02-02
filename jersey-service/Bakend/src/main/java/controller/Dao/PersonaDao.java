@@ -41,47 +41,47 @@ public class PersonaDao extends AdapterDao<Persona>{
     }
 
     public Boolean update() throws Exception {
-        // Obtener la persona desde la base de datos (usando el ID)
-        Persona persona = getPersona();
-        
-        // Verificar si la persona existe antes de actualizarla
-        if (persona == null) {
-            throw new Exception("Persona no encontrada");
+        try {
+            this.merge(getPersona(), getPersona().getIdPersona() - 1);
+            this.listAll = getListAll();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
-        
-        // Actualizar los datos de la persona
-        this.merge(persona, persona.getIdPersona() - 1);
-        
-        // Actualizar la lista después de la actualización
-        this.listAll = listAll();
-        
-        return true;
     }
     
 
-    public Boolean delete(int id) throws Exception {
-        LinkedList<Persona> lista = getListAll();
+    public Boolean delete(Integer idPersona) throws Exception {
+        LinkedList<Persona> personas = getListAll();  // Obtener todas las personas
         
-        // Buscar el índice de la persona a eliminar
+        // Buscar el índice de la persona con el ID proporcionado
         int indexToRemove = -1;
-        for (int i = 0; i < lista.getSize(); i++) {
-            if (lista.get(i).getIdPersona() == id) {
-                indexToRemove = i;
+        for (int i = 0; i < personas.getSize(); i++) {
+            if (personas.get(i).getIdPersona() == idPersona) {
+                indexToRemove = i;  // Encontramos la persona, guardamos su índice
                 break;
             }
         }
     
-        if (indexToRemove == -1) {
-            throw new Exception("Persona con id " + id + " no encontrada.");
+        if (indexToRemove != -1) {
+            // Si encontramos la persona, eliminarla por su índice
+            personas.remove(indexToRemove);
+            
+            // Convertir la lista actualizada a JSON (si es necesario)
+            String info = g.toJson(personas.toArray());
+        
+            // Guardar el archivo actualizado
+            saveFile(info);
+        
+            // Actualizar la lista en memoria
+            this.listAll = personas;
+        
+            return true;  // Persona eliminada con éxito
+        } else {
+            // Si la persona no se encuentra, lanzar una excepción
+            throw new Exception("Persona con ID " + idPersona + " no encontrada");
         }
-    
-        // Eliminar la persona por su índice
-        lista.remove(indexToRemove);
-        
-        // Actualizar la lista después de la eliminación
-        this.listAll = lista;
-        
-        return true;
     }
     
     

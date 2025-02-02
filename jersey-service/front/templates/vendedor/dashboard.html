@@ -1,0 +1,107 @@
+{% extends "tienda/base.html" %}
+
+{% block content %}
+<div class="row">
+    <!-- Sección de Clientes -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-people"></i> Clientes</h5>
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Teléfono</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cliente in clientes|slice(5) %}
+                            <tr>
+                                <td>{{ cliente.nombre }} {{ cliente.apellido }}</td>
+                                <td>{{ cliente.telefono }}</td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-success">
+                                        <i class="bi bi-cart-plus"></i> Nueva Venta
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <a href="{{ url_for('router.agregar_persona') }}" class="btn btn-primary btn-sm">
+                    <i class="bi bi-plus-circle"></i> Nuevo Cliente
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Ventas Rápidas -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-receipt"></i> Nueva Factura</h5>
+                <form id="formFactura">
+                    <div class="mb-3">
+                        <label class="form-label">Cliente</label>
+                        <select class="form-select" required>
+                            <option value="">Seleccionar cliente...</option>
+                            {% for cliente in clientes %}
+                            <option value="{{ cliente.id }}">{{ cliente.nombre }} {{ cliente.apellido }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Productos</label>
+                        <div id="productosContainer">
+                            <!-- Los productos se agregarán dinámicamente aquí -->
+                        </div>
+                        <button type="button" class="btn btn-sm btn-secondary mt-2" onclick="agregarProducto()">
+                            <i class="bi bi-plus-circle"></i> Agregar Producto
+                        </button>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-save"></i> Generar Factura
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script para manejar productos dinámicos -->
+<script>
+    let productoCount = 0;
+    
+    function agregarProducto() {
+        productoCount++;
+        const html = `
+            <div class="row mb-2 producto-${productoCount}">
+                <div class="col-5">
+                    <input type="text" class="form-control" placeholder="Nombre producto" required>
+                </div>
+                <div class="col-3">
+                    <input type="number" class="form-control" placeholder="Cantidad" min="1" required>
+                </div>
+                <div class="col-3">
+                    <input type="number" class="form-control" placeholder="Precio" min="0" step="0.01" required>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-danger btn-sm" onclick="removerProducto(${productoCount})">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </div>`;
+        
+        document.getElementById('productosContainer').insertAdjacentHTML('beforeend', html);
+    }
+
+    function removerProducto(id) {
+        document.querySelector(`.producto-${id}`).remove();
+    }
+</script>
+{% endblock %}
