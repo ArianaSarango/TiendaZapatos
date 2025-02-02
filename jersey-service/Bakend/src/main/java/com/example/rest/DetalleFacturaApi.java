@@ -1,6 +1,7 @@
 package com.example.rest;
 
 import controller.Dao.servicies.DetalleFacturaServicies;
+import controller.Dao.servicies.ProductoServices;
 import models.EstadoPago;
 
 import java.util.HashMap;
@@ -16,6 +17,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.Response.StatusType;
+
+import com.google.gson.Gson;
 
 @Path("detalleFactura")
 public class DetalleFacturaApi {
@@ -64,8 +67,15 @@ public class DetalleFacturaApi {
         // Validation
 
         HashMap res = new HashMap<>();
+        Gson g = new Gson();
+        String a = g.toJson(map);
 
         try {
+
+            if (map.get("device")!= null && map.get("details") != null) {
+                ProductoServices ps = new ProductoServices();
+                ps.setProducto(ps.get(Integer.parseInt(map.get("device").toString())));
+            }
 
             DetalleFacturaServicies dfs = new DetalleFacturaServicies();
 

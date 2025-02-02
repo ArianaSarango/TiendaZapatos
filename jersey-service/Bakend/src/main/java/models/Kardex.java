@@ -6,7 +6,7 @@ public class Kardex {
     private String registroVenta;
     private Producto producto;
     private String fecha;
-    private listaKardex listaKardex;
+    
 
     // Constructor
     
@@ -16,7 +16,7 @@ public class Kardex {
         this.registroVenta = registroVenta;
         this.producto = producto;
         this.fecha = fecha;
-        this.listaKardex = new listaKardex();
+        
     }
 
     public Kardex(){
@@ -24,9 +24,7 @@ public class Kardex {
     }
 
     // Getters and Setters
-    public listaKardex getListaKardex() {
-        return listaKardex;
-    }
+   
     public int getIdKardex() {
         return idKardex;
     }
@@ -57,8 +55,6 @@ public class Kardex {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-    public void setListaKardex(listaKardex listaKardex) {
-        this.listaKardex = listaKardex;
-    }
+   
 
 }
