@@ -6,6 +6,20 @@ public class Usuario {
     private String password;
     private String email;
     private Boolean estado;
+    private Persona persona;
+
+    // Constructor sin parámetros
+    public Usuario() {
+    }
+
+    public Usuario(int idUser, String user, String password, String email, Boolean estado, Persona persona) {
+        this.idUser = idUser;
+        this.user = user;
+        this.password = password;
+        this.email = email;
+        this.estado = estado;
+        this.persona = persona;
+    }
 
     public int getIdUser() {
         return idUser;
@@ -36,6 +50,12 @@ public class Usuario {
     }
     public void setEstado(Boolean estado) {
         this.estado = estado;
+    }
+    public Persona getPersona() {
+        return persona;
+    }
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
 }

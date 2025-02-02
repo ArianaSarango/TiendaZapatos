@@ -65,18 +65,26 @@ public class PersonaApi {
     public Response save(HashMap<String, Object> map) {
         HashMap<String, Object> res = new HashMap<>();
         PersonaServices ps = new PersonaServices();
-
+    
         try {
+            // Validar que los parámetros no sean nulos
+            if (map.get("nombre") == null || map.get("apellido") == null || map.get("tipoIdentificacion") == null || map.get("numeroIdentificacion") == null) {
+                res.put("msg", "Error");
+                res.put("data", "Parámetros requeridos están vacíos");
+                return Response.status(Status.BAD_REQUEST).entity(res).build();
+            }
+    
             Persona persona = ps.getPersona();
             persona.setNombre(map.get("nombre").toString());
             persona.setApellido(map.get("apellido").toString());
+            
             // Convertir el String a TipoIdentificacion
             TipoIdentificacion tipoIdentificacion = ps.getTipoIdentificacion(map.get("tipoIdentificacion").toString());
             persona.setTipoIdentificacion(tipoIdentificacion);
             persona.setNumeroIdentificacion(map.get("numeroIdentificacion").toString());
             persona.setDireccion(map.get("direccion").toString());
             persona.setTelefono(map.get("telefono").toString());
-
+    
             ps.save();
             res.put("msg", "Ok");
             res.put("data", "Guardado correctamente");
@@ -87,61 +95,56 @@ public class PersonaApi {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
     }
+    
 
-    @Path("/update")
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response update(HashMap<String, Object> map) {
-        HashMap<String, Object> res = new HashMap<>();
+
+    
+    
+    
+
+    @Path("/delete/{id}")
+@POST
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
+public Response delete(@PathParam("id") Integer id) {
+    HashMap<String, Object> res = new HashMap<>();
+
+    try {
         PersonaServices ps = new PersonaServices();
-
-        try {
-            Persona persona = ps.getPersona();
-            persona.setNombre(map.get("nombre").toString());
-            persona.setApellido(map.get("apellido").toString());
-            TipoIdentificacion tipoIdentificacion = ps.getTipoIdentificacion(map.get("tipoIdentificacion").toString());
-            persona.setTipoIdentificacion(tipoIdentificacion);
-            persona.setNumeroIdentificacion(map.get("numeroIdentificacion").toString());
-            persona.setDireccion(map.get("direccion").toString());
-            persona.setTelefono(map.get("telefono").toString());
-
-            ps.update();
+        Boolean success = ps.delete(id);
+        if (success) {
             res.put("msg", "Ok");
-            res.put("data", "Actualizado correctamente");
+            res.put("data", "Persona eliminada correctamente");
             return Response.ok(res).build();
-        } catch (Exception e) {
+        } else {
             res.put("msg", "Error");
-            res.put("data", e.toString());
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
+            res.put("data", "Persona no encontrada");
+            return Response.status(Status.NOT_FOUND).entity(res).build();
         }
+    } catch (Exception e) {
+        res.put("msg", "Error");
+        res.put("data", e.toString());
+        return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
     }
+}
 
-    @Path("/delete")
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
+    
+
+    @Path("/list/search/ident/factura/{texto}")
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response delete(HashMap<String, Object> map) {
-        HashMap<String, Object> res = new HashMap<>();
+    public Response getPersonasIdentFactura(@PathParam("texto") String texto) {
+        HashMap map = new HashMap<>();
+        PersonaServices ps = new PersonaServices();
+        map.put("msg", "Ok");
+        map.put("data", ps.buscar_identificacion_factura(texto));
 
-        try {
-            PersonaServices ps = new PersonaServices();
-            Integer id = Integer.parseInt(map.get("id").toString());
-
-            Boolean success = ps.delete(id);
-            if (success) {
-                res.put("msg", "Ok");
-                res.put("data", "Persona eliminada correctamente");
-                return Response.ok(res).build();
-            } else {
-                res.put("msg", "Error");
-                res.put("data", "Persona no encontrada");
-                return Response.status(Status.NOT_FOUND).entity(res).build();
-            }
-        } catch (Exception e) {
-            res.put("msg", "Error");
-            res.put("data", e.toString());
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
+        if (map.isEmpty()) {
+            map.put("msg", "No existe la persona");
+            return Response.status(Status.BAD_REQUEST).header("Access-Control-Allow-Origin", "*").entity(map).build();
         }
+        return Response.ok(map).header("Access-Control-Allow-Origin", "*").build();
+
+
     }
 }

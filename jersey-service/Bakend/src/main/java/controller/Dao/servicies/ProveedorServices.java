@@ -2,7 +2,6 @@ package controller.Dao.servicies;
 
 import controller.Dao.ProveedorDao;
 import controller.tda.list.LinkedList;
-
 import models.Proveedor;
 
 public class ProveedorServices {
@@ -21,6 +20,7 @@ public class ProveedorServices {
     }
 
     public Boolean delete(Integer id) throws Exception {
+        // Llamamos al método delete del DAO
         return obj.delete(id);
     }
 
@@ -31,10 +31,6 @@ public class ProveedorServices {
     public Proveedor getProveedor() {
         return obj.getProveedor();
     }
-
-    // public void setIdProveedor(Proveedor proveedor) {
-    //     obj.setIdProveedor(proveedor);
-    // }
 
     public Proveedor get(Integer id) throws Exception {
         return obj.get(id);

@@ -1,8 +1,10 @@
 package models;
 
-import java.text.ParseException;
+//import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import controller.tda.list.LinkedList;
 
 public class Pedido {
     private int id;
@@ -10,13 +12,16 @@ public class Pedido {
     private int cantidadSolicitada;
     private String fechaPedido;
     private String fecha;
-
     private Proveedor proveedor;
     private boolean recibido;
 
+    //relacion muchos a muchos pedidos --> productos
+    private LinkedList<Producto> productos;
+
     public Pedido() {}
 
-    public Pedido(int id, Producto producto, int cantidadSolicitada, String fechaPedido, String fecha, Proveedor proveedor, boolean recibido) {
+    public Pedido(int id, Producto producto, int cantidadSolicitada, String fechaPedido, String fecha,
+            Proveedor proveedor, boolean recibido, LinkedList<Producto> productos) {
         this.id = id;
         this.producto = producto;
         this.cantidadSolicitada = cantidadSolicitada;
@@ -24,6 +29,7 @@ public class Pedido {
         this.fecha = fecha;
         this.proveedor = proveedor;
         this.recibido = recibido;
+        this.productos = productos;
     }
 
     public int getId() { return id; }
@@ -54,4 +60,14 @@ public class Pedido {
 
     public boolean isRecibido() { return recibido; }
     public void setRecibido(boolean recibido) { this.recibido = recibido; }
+
+    public LinkedList<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(LinkedList<Producto> productos) {
+        this.productos = productos;
+    }
+
+    
 }
