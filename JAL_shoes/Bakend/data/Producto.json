@@ -1,0 +1,90 @@
+[
+    {
+        "idProducto": 1,
+        "codigo": "A001",
+        "stock": 5,
+        "precio": 50.8,
+        "modelo": "Air Jordan 1 Low SE",
+        "marca": "NIKE",
+        "talla": "40",
+        "tipoZapato": "Deportivo",
+        "color": "Azul"
+    },
+    {
+        "idProducto": 2,
+        "codigo": "A002",
+        "stock": 8,
+        "precio": 60.5,
+        "modelo": "UltraBoost 22",
+        "marca": "Adidas",
+        "talla": "42",
+        "tipoZapato": "Running",
+        "color": "Negro"
+    },
+    {
+        "idProducto": 3,
+        "codigo": "A003",
+        "stock": 4,
+        "precio": 45.9,
+        "modelo": "Classic Leather",
+        "marca": "Reebok",
+        "talla": "41",
+        "tipoZapato": "Casual",
+        "color": "Blanco"
+    },
+    {
+        "idProducto": 4,
+        "codigo": "A004",
+        "stock": 10,
+        "precio": 55.0,
+        "modelo": "Chuck Taylor All Star",
+        "marca": "Converse",
+        "talla": "39",
+        "tipoZapato": "Casual",
+        "color": "Rojo"
+    },
+    {
+        "idProducto": 5,
+        "codigo": "A005",
+        "stock": 6,
+        "precio": 75.3,
+        "modelo": "Gel-Kayano 28",
+        "marca": "ASICS",
+        "talla": "44",
+        "tipoZapato": "Running",
+        "color": "Gris"
+    },
+    {
+        "idProducto": 6,
+        "codigo": "A006",
+        "stock": 7,
+        "precio": 80.0,
+        "modelo": "Puma RS-X",
+        "marca": "PUMA",
+        "talla": "43",
+        "tipoZapato": "Deportivo",
+        "color": "Verde"
+    },
+    {
+        "idProducto": 7,
+        "codigo": "A007",
+        "stock": 3,
+        "precio": 90.5,
+        "modelo": "Yeezy Boost 350",
+        "marca": "Adidas",
+        "talla": "40",
+        "tipoZapato": "Casual",
+        "color": "Beige"
+    },
+    {
+        "idProducto": 8,
+        "codigo": "A008",
+        "stock": 5,
+        "precio": 65.0,
+        "modelo": "New Balance 574",
+        "marca": "New Balance",
+        "talla": "42",
+        "tipoZapato": "Casual",
+        "color": "Azul Marino"
+    }
+]
