@@ -6,10 +6,15 @@ router = Blueprint('router', __name__)
 def home():
     return render_template('index.html')
 
+# @router.route('/')
+# def home():
+#     return render_template('templateFirst.html')
+
+
 @router.route('/checkout')
 def checkout():
-    return render_template('checkout.html')
+    return render_template('ModuloFactura/checkout.html')
 
-@router.route('/cart')
-def cart():
-    return render_template('cart.html')
+@router.route('/order')
+def order():
+    return render_template('ModuloFactura/order.html')

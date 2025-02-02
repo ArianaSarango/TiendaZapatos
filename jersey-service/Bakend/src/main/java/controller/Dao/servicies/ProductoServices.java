@@ -43,4 +43,21 @@ public class ProductoServices {
     public void setProducto(Producto producto){
         obj.setProducto(producto);
     }
+
+    public Producto get_Producto_Codigo(String codigo) throws Exception {
+        LinkedList<Producto> lista = obj.getlistAll();
+        Producto producto = null;
+        if (lista.isEmpty()) {
+            return producto;
+        } else {
+            Producto[] productos = lista.toArray();
+            for (int i = 0; i < productos.length; i++) {
+                if (productos[i].getCodigo().equals(codigo)) {
+                    producto = productos[i];
+                    break;
+                }
+            }
+            return producto;
+        }
+    }
 }

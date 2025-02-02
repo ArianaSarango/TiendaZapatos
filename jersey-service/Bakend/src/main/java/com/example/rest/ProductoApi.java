@@ -35,6 +35,28 @@ public class ProductoApi {
         return Response.ok(map).build();
     }
 
+    @Path("/code/{codigo}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getProductosBycode(@PathParam("codigo")String codigo) {
+        HashMap map = new HashMap<>();
+        ProductoServices ps = new ProductoServices();
+        try {
+            ps.setProducto(ps.get_Producto_Codigo(codigo));
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+        map.put("msg", "Ok");
+        map.put("data", ps.getProducto());
+        if (ps.getProducto().getCodigo() == null) {
+            map.put("dta", "No existe producto con ese codigo");
+            return Response.status(Status.BAD_REQUEST).header("Access-Control-Allow-Origin","*").entity(map).build();
+            
+        }
+        return Response.ok(map).header("Access-Control-Allow-Origin","*").build();
+
+    }
+
     @Path("/get/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -76,7 +98,8 @@ public class ProductoApi {
 
         try {
             ProductoServices ps = new ProductoServices();
-            ps.getProducto().setColor(null);
+            ps.getProducto().setCodigo(map.get("codigo").toString());
+            ps.getProducto().setColor(map.get("color").toString());
             ps.getProducto().setMarca(map.get("marca").toString());
             ps.getProducto().setModelo(map.get("modelo").toString());
             ps.getProducto().setPrecio(Float.parseFloat(map.get("precio").toString()));
@@ -118,7 +141,8 @@ public class ProductoApi {
 
         try {
             ProductoServices ps = new ProductoServices();
-            ps.getProducto().setColor(null);
+            ps.getProducto().setCodigo(map.get("codigo").toString());
+            ps.getProducto().setColor(map.get("color").toString());
             ps.getProducto().setMarca(map.get("marca").toString());
             ps.getProducto().setModelo(map.get("modelo").toString());
             ps.getProducto().setPrecio(Float.parseFloat(map.get("precio").toString()));

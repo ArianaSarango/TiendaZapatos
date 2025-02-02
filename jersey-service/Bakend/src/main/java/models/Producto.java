@@ -2,6 +2,7 @@ package models;
 
 public class Producto {
     private int idProducto;
+    private String codigo;
     private int stock;
     private float precio;
     private String modelo;
@@ -28,6 +29,14 @@ public class Producto {
     }
 
     // Getters and Setters
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
 
     public int getIdProducto() {
         return idProducto;

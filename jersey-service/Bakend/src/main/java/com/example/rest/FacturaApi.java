@@ -29,7 +29,7 @@ import controller.Dao.servicies.FacturaServicies;
 import controller.tda.list.LinkedList;
 
 @Path("factura")
-public class FacturaApi {
+public class FacturaApi {       
     @Path("/list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -150,30 +150,30 @@ public class FacturaApi {
         return Response.ok(map).build();
     }
 
-    @Path("/delete/{id}")
-    @DELETE
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteFactura(@PathParam("id") int id) {
-        HashMap<String, Object> res = new HashMap<>();
-        try {
-            FacturaServicies fs = new FacturaServicies();
-            System.out.println("Intentando eliminar factura con ID: " + id);
+    // @Path("/delete/{id}")
+    // @DELETE
+    // @Produces(MediaType.APPLICATION_JSON)
+    // public Response deleteFactura(@PathParam("id") int id) {
+    //     HashMap<String, Object> res = new HashMap<>();
+    //     try {
+    //         FacturaServicies fs = new FacturaServicies();
+    //         System.out.println("Intentando eliminar factura con ID: " + id);
 
-            boolean facturadelete = fs.delete(id); // Eliminar directamente por ID
+    //         boolean facturadelete = fs.delete(id); // Eliminar directamente por ID
 
-            if (facturadelete) {
-                res.put("message", "Factura eliminada exitosamente");
-                return Response.ok(res).build();
-            } else {
-                res.put("message", "Factura no encontrada o no pudo ser eliminada");
-                return Response.status(Response.Status.NOT_FOUND).entity(res).build();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            res.put("message", "Error al intentar eliminar la factura");
-            res.put("error", e.getMessage());
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
-        }
-    }
+    //         if (facturadelete) {
+    //             res.put("message", "Factura eliminada exitosamente");
+    //             return Response.ok(res).build();
+    //         } else {
+    //             res.put("message", "Factura no encontrada o no pudo ser eliminada");
+    //             return Response.status(Response.Status.NOT_FOUND).entity(res).build();
+    //         }
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //         res.put("message", "Error al intentar eliminar la factura");
+    //         res.put("error", e.getMessage());
+    //         return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
+    //     }
+    // }
 
 }
