@@ -10,40 +10,28 @@ public class Kardex {
     private String fecha;
     private listaKardex listaKardex;
 
-<<<<<<< HEAD
-    // Relación 1 a muchos Kardex → Pedido
-    private List<Pedido> pedidos;
-
-    // Constructor
-    public Kardex(int idKardex, String registroCompra, String registroVenta, Producto producto, String fecha, List<Pedido> pedidos) {
-=======
     // Constructor
     
     public Kardex(int idKardex, String registroCompra, String registroVenta, Producto producto, String fecha) {
->>>>>>> origin/Juan
+
         this.idKardex = idKardex;
         this.registroCompra = registroCompra;
         this.registroVenta = registroVenta;
         this.producto = producto;
         this.fecha = fecha;
-<<<<<<< HEAD
-        this.pedidos = pedidos;  // Corrección aquí
-=======
+
         this.listaKardex = new listaKardex();
->>>>>>> origin/Juan
+ 
     }
 
     public Kardex() {
     }
 
-<<<<<<< HEAD
-    // Getters y Setters
-=======
     // Getters and Setters
     public listaKardex getListaKardex() {
         return listaKardex;
     }
->>>>>>> origin/Juan
+
     public int getIdKardex() {
         return idKardex;
     }
@@ -83,7 +71,7 @@ public class Kardex {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-<<<<<<< HEAD
+
 
     public List<Pedido> getPedidos() {  // Corrección en el nombre del método
         return pedidos;
@@ -92,10 +80,10 @@ public class Kardex {
     public void setPedidos(List<Pedido> pedidos) {  // Corrección en el nombre del método
         this.pedidos = pedidos;
     }
-=======
+
     public void setListaKardex(listaKardex listaKardex) {
         this.listaKardex = listaKardex;
     }
 
->>>>>>> origin/Juan
+ 
 }
