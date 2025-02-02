@@ -1,6 +1,7 @@
 package controller.Dao;
 
 import models.Pedido;
+import models.Pedido;
 import controller.Dao.implement.AdapterDao;
 import controller.tda.list.LinkedList;
 
@@ -60,24 +61,40 @@ public class PedidoDao extends AdapterDao<Pedido> {
         }
     }
 
-    public Boolean delete(int abc) throws Exception{
-        this.delete(abc);
-        this.listAll = listAll();
-        return true;
+     public Boolean delete(int idPedido) throws Exception {
+        LinkedList<Pedido> pedidos = listAll(); // Obtener todas las pedidos
+    
+        // Buscar el índice de la pedido con el ID dado
+        int indexToRemove = -1;
+        for (int i = 0; i < pedidos.getSize(); i++) {
+            if (pedidos.get(i).getId() == idPedido) {
+                indexToRemove = i;
+                break;
+            }
+        }
+    
+        if (indexToRemove != -1) {
+            // Si se encuentra el índice, eliminar la pedido
+            supreme(indexToRemove);
+            return true;
+        } else {
+            // Si no se encuentra, lanzar una excepción
+            throw new Exception("Pedido con ID " + idPedido + " no encontrada");
+        }
     }
 
-    // public Boolean delete(Integer id) throws Exception {
-    //     LinkedList<Pedido> list = getListAll();
-    //     Pedido pedido = get(id);
-    //     if (pedido != null) {
-    //         list.remove(pedido);
-    //         String info = g.toJson(list.toArray());
-    //         saveFile(info);
-    //         this.listAll = list;
-    //         return true;
-    //     } else {
-    //         System.out.println("Pedido con id " + id + " no encontrado.");
-    //         return false;
-    //     }
-    // }
+    public Boolean delete(Integer id) throws Exception {
+        LinkedList<Pedido> list = getListAll();
+        Pedido pedido = get(id);
+        if (pedido != null) {
+            list.remove(0);
+            String info = g.toJson(list.toArray());
+            saveFile(info);
+            this.listAll = list;
+            return true;
+        } else {
+            System.out.println("Pedido con id " + id + " no encontrado.");
+            return false;
+        }
+    }
 }

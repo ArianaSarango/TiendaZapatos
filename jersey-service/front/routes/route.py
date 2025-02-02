@@ -31,6 +31,7 @@ def home():
     usuarios = cargar_datos(USUARIOS_FILE)
     return render_template('index.html', personas=personas, usuarios=usuarios)
 
+<<<<<<< HEAD
 
 @router.route('/persona/agregar', methods=['GET', 'POST'])
 def agregar_persona():
@@ -163,3 +164,17 @@ def eliminar_persona(id):
     except Exception as e:
         flash(f"Error: {e}", "error")
     return redirect(url_for('router.home'))
+=======
+# @router.route('/')
+# def home():
+#     return render_template('templateFirst.html')
+
+
+@router.route('/checkout')
+def checkout():
+    return render_template('ModuloFactura/checkout.html')
+
+@router.route('/order')
+def order():
+    return render_template('ModuloFactura/order.html')
+>>>>>>> origin/Juan

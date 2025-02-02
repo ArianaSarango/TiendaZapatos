@@ -9,6 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -32,6 +33,28 @@ public class ProductoApi {
         }
         
         return Response.ok(map).build();
+    }
+
+    @Path("/code/{codigo}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getProductosBycode(@PathParam("codigo")String codigo) {
+        HashMap map = new HashMap<>();
+        ProductoServices ps = new ProductoServices();
+        try {
+            ps.setProducto(ps.get_Producto_Codigo(codigo));
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+        map.put("msg", "Ok");
+        map.put("data", ps.getProducto());
+        if (ps.getProducto().getCodigo() == null) {
+            map.put("dta", "No existe producto con ese codigo");
+            return Response.status(Status.BAD_REQUEST).header("Access-Control-Allow-Origin","*").entity(map).build();
+            
+        }
+        return Response.ok(map).header("Access-Control-Allow-Origin","*").build();
+
     }
 
     @Path("/get/{id}")
@@ -75,7 +98,8 @@ public class ProductoApi {
 
         try {
             ProductoServices ps = new ProductoServices();
-            ps.getProducto().setColor(null);
+            ps.getProducto().setCodigo(map.get("codigo").toString());
+            ps.getProducto().setColor(map.get("color").toString());
             ps.getProducto().setMarca(map.get("marca").toString());
             ps.getProducto().setModelo(map.get("modelo").toString());
             ps.getProducto().setPrecio(Float.parseFloat(map.get("precio").toString()));
@@ -117,7 +141,8 @@ public class ProductoApi {
 
         try {
             ProductoServices ps = new ProductoServices();
-            ps.getProducto().setColor(null);
+            ps.getProducto().setCodigo(map.get("codigo").toString());
+            ps.getProducto().setColor(map.get("color").toString());
             ps.getProducto().setMarca(map.get("marca").toString());
             ps.getProducto().setModelo(map.get("modelo").toString());
             ps.getProducto().setPrecio(Float.parseFloat(map.get("precio").toString()));
@@ -138,32 +163,30 @@ public class ProductoApi {
         }
     }
 
-    @Path("/delete")
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/delete/{id}")
+    @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    public Response delete(HashMap<String, Object> map) {
+    public Response deleteProducto(@PathParam("id") int id) {
         HashMap<String, Object> res = new HashMap<>();
 
         try {
             ProductoServices ps = new ProductoServices();
-            Integer id = Integer.parseInt(map.get("idProducto").toString());
-            
-            Boolean success = ps.delete(id);
-            if (success) {
-                res.put("msg", "Ok");
-                res.put("data", "Eliminado correctamente");
+            System.out.println("Intentando eliminar producto con ID: " + id);
+
+            boolean productodelete = ps.delete(id); // Eliminar directamente por ID
+
+            if (productodelete) {
+                res.put("message", "producto eliminada exitosamente");
                 return Response.ok(res).build();
             } else {
-                res.put("msg", "Error");
-                res.put("data", "Producto no encontrada");
-                return Response.status(Status.NOT_FOUND).entity(res).build();
+                res.put("message", "producto no encontrada o no pudo ser eliminada");
+                return Response.status(Response.Status.NOT_FOUND).entity(res).build();
             }
         } catch (Exception e) {
-            System.out.println("Error en delete data: " + e.toString());
-            res.put("msg", "Error");
-            res.put("data", e.toString());
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
+            e.printStackTrace();
+            res.put("message", "Error al intentar eliminar la producto");
+            res.put("error", e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
     }
 }

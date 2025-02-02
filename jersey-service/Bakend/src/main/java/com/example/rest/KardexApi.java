@@ -9,6 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -132,32 +133,30 @@ public class KardexApi {
         }
     }
 
-    @Path("/delete")
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/delete/{id}")
+    @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    public Response delete(HashMap<String, Object> map) {
+    public Response deleteKardex(@PathParam("id") int id) {
         HashMap<String, Object> res = new HashMap<>();
 
         try {
             KardexServices ps = new KardexServices();
-            Integer id = Integer.parseInt(map.get("idKardex").toString());
-            
-            Boolean success = ps.delete(id);
-            if (success) {
-                res.put("msg", "Ok");
-                res.put("data", "Eliminado correctamente");
+            System.out.println("Intentando eliminar kardex con ID: " + id);
+
+            boolean kardexdelete = ps.delete(id); // Eliminar directamente por ID
+
+            if (kardexdelete) {
+                res.put("message", "Kardex eliminada exitosamente");
                 return Response.ok(res).build();
             } else {
-                res.put("msg", "Error");
-                res.put("data", "Kardex no encontrada");
-                return Response.status(Status.NOT_FOUND).entity(res).build();
+                res.put("message", "Kardex no encontrada o no pudo ser eliminada");
+                return Response.status(Response.Status.NOT_FOUND).entity(res).build();
             }
         } catch (Exception e) {
-            System.out.println("Error en delete data: " + e.toString());
-            res.put("msg", "Error");
-            res.put("data", e.toString());
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
+            e.printStackTrace();
+            res.put("message", "Error al intentar eliminar la kardex");
+            res.put("error", e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
     }
 }

@@ -5,5 +5,4 @@ public enum EstadoPago {
     PENDIENTE,
     ANULADO,
     LIQUIDADO;
-
 }

@@ -43,11 +43,11 @@ public class FacturaDao extends AdapterDao<Factura>{
         return true;
     }
 
-    public Boolean update() throws Exception{
-        this.merge(getFactura(), getFactura().getIdFactura()-1);
-        this.listAll = listAll();
-        return true;
-    }
+    // public Boolean update() throws Exception{
+    //     this.merge(getFactura(), getFactura().getIdFactura()-1);
+    //     this.listAll = listAll();
+    //     return true;
+    // }
 
     // public Boolean delete(int id) throws Exception{
     //     this.supreme(id);

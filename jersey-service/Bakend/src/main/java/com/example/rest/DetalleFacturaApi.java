@@ -117,7 +117,6 @@ public class DetalleFacturaApi {
     }
 
     @Path("/listType")
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getType() {
@@ -126,34 +125,6 @@ public class DetalleFacturaApi {
         map.put("msg", "Ok");
         map.put("data", ps.getDetalleFactura());
         return Response.ok(map).build();
-    }
-
-    @Path("/delete")
-    @DELETE
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteFamilia(@PathParam("id") int id) {
-        HashMap<String, Object> res = new HashMap<>();
-
-        try {
-            DetalleFacturaServicies fs = new DetalleFacturaServicies();
-
-            // Intentar eliminar la familia
-            boolean facturadelete = fs.delete(id - 1);
-
-            if (facturadelete) {
-                res.put("message", "Detalle de factura eliminado exitosamente");
-                return Response.ok(res).build();
-            } else {
-                // Si no se eliminó, enviar un error 404
-                res.put("message", "Detalle de factura no encontrado o no eliminado");
-                return Response.status(Response.Status.NOT_FOUND).entity(res).build();
-            }
-        } catch (Exception e) {
-            // En caso de error, devolver una respuesta de error interno
-            res.put("message", "Error al intentar eliminar el detalle de factura");
-            res.put("error", e.getMessage());
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
-        }
     }
 
 }

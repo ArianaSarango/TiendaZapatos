@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Checkout - Tienda de Zapatos</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    
+    <link href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='assets/css/templatemo.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='assets/css/custom.css') }}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Start Top Nav -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
+        <div class="container text-light">
+            <div class="w-100 d-flex justify-content-between">
+                <div>
+                    <i class="fa fa-envelope mx-2"></i>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:info@company.com">tendazap@company.com</a>
+                    <i class="fa fa-phone mx-2"></i>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:010-020-0340">0994098836</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
+                Tienda de Zapatos
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+                <div class="flex-fill">
+                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/regOrder">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/checkout">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    <!-- End Navbar -->
+
+    <!-- Checkout Page Header -->
+    <div class="container-fluid bg-success text-white mb-5 py-4">
+        <div class="d-flex flex-column align-items-center justify-content-center">
+            <h1 class="h1">Registro de Compra</h1>
+            <div class="d-inline-flex">
+                <p class="m-0"><a class="text-white" href="/">Home</a></p>
+                <p class="m-0 px-2">-</p>
+                <p class="m-0">Checkout</p>
+            </div>
+        </div>
+    </div>
+    <!-- End Header -->
+
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-8">
+                <h4 class="mb-4 text-success">Dirección de Facturación</h4>
+                <form>
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Electrónico</label>
+                        <input type="email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Dirección</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Ciudad</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Código Postal</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-success">
+                    <div class="card-header bg-success text-white">
+                        <h4 class="mb-0">Resumen del Pedido</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Producto 1 - $150</p>
+                        <p>Producto 2 - $200</p>
+                        <hr>
+                        <p><strong>Total: $350</strong></p>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <button class="btn btn-success btn-block">Finalizar Compra</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>© 2024 Tienda de Zapatos. Todos los derechos reservados.</p>
+    </footer>
+    <!-- End Footer -->
+</body>
+
+</html>

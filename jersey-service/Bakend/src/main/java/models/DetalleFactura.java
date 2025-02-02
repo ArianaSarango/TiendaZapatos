@@ -4,7 +4,7 @@ public class DetalleFactura {
     private int id;
     private int idProducto;
     private Double precioProducto;
-    //private Persona cliente;
+    private Persona cliente;
     private int cantidadProductos;
     private int idDetalleFactura;
 
@@ -13,10 +13,10 @@ public class DetalleFactura {
 
     // constructor
 
-    public DetalleFactura(int id, int idProducto, Double precioProducto, /*Persona cliente,*/ int cantidadProductos){
+    public DetalleFactura(int id, int idProducto, Double precioProducto, Persona cliente, int cantidadProductos){
         this.idProducto = idProducto;
         this.precioProducto = precioProducto;
-        //this.cliente = cliente;
+        this.cliente = cliente;
         this.cantidadProductos = cantidadProductos;
         this.id = id;
         this.producto = producto;
@@ -60,13 +60,13 @@ public class DetalleFactura {
         this.precioProducto = precioProducto;
     }
 
-    /*public Persona getCliente() {
+    public Persona getCliente() {
         return this.cliente;
     }
 
     public void setCliente(Persona cliente) {
         this.cliente = cliente;
-    }*/
+    }
 
     public int getCantidadProductos() {
         return this.cantidadProductos;

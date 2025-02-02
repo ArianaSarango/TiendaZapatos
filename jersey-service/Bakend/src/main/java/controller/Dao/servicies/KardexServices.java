@@ -19,7 +19,10 @@ public class KardexServices {
         return obj.delete(id); // Llamar al método delete de KardexDao
     }
     
-
+    public Boolean delete(int id) throws Exception {
+        return obj.delete(id);
+    }
+    
     public LinkedList<Kardex> listAll(){
         return obj.getlistAll();
 

@@ -1,1 +1,11 @@
-[{"idProducto":1,"stock":50,"precio":49.99,"modelo":"Deportivo","marca":"Nike","talla":"42","tipoZapato":"Deportivo"}]
+[
+    {
+        "idProducto": 1,
+        "stock": 50,
+        "precio": 49.99,
+        "modelo": "Deportivo",
+        "marca": "Nike",
+        "talla": "42",
+        "tipoZapato": "Deportivo"
+    }
+]
