@@ -1,0 +1,95 @@
+{% extends "tienda/base.html" %}
+
+{% block content %}
+<div class="row">
+    <!-- Tarjeta de Usuarios -->
+    <div class="col-md-4 mb-4">
+        <div class="card dashboard-card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-people-fill"></i> Usuarios</h5>
+                <p class="card-text">Total registrados: {{ usuarios|length }}</p>
+                <a href="{{ url_for('router.agregar_usuario') }}" class="btn btn-primary btn-sm">
+                    <i class="bi bi-plus-circle"></i> Nuevo Usuario
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tarjeta de Proveedores -->
+    <div class="col-md-4 mb-4">
+        <div class="card dashboard-card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-truck"></i> Proveedores</h5>
+                <p class="card-text">Total registrados: {{ proveedores|length }}</p>
+                <a href="{{ url_for('router.agregar_proveedor') }}" class="btn btn-primary btn-sm">
+                    <i class="bi bi-plus-circle"></i> Nuevo Proveedor
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tarjeta de Clientes -->
+    <div class="col-md-4 mb-4">
+        <div class="card dashboard-card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-person-badge"></i> Clientes</h5>
+                <p class="card-text">Total registrados: {{ personas|length }}</p>
+                <a href="{{ url_for('router.agregar_persona') }}" class="btn btn-primary btn-sm">
+                    <i class="bi bi-plus-circle"></i> Nuevo Cliente
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tabla Resumen -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Resumen General</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Total</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Usuarios</td>
+                                <td>{{ usuarios|length }}</td>
+                                <td>
+                                    <a href="{{ url_for('router.agregar_usuario') }}" class="btn btn-sm btn-warning">
+                                        <i class="bi bi-pencil-square"></i> Administrar
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Proveedores</td>
+                                <td>{{ proveedores|length }}</td>
+                                <td>
+                                    <a href="{{ url_for('router.agregar_proveedor') }}" class="btn btn-sm btn-warning">
+                                        <i class="bi bi-pencil-square"></i> Administrar
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Clientes</td>
+                                <td>{{ personas|length }}</td>
+                                <td>
+                                    <a href="{{ url_for('router.agregar_persona') }}" class="btn btn-sm btn-warning">
+                                        <i class="bi bi-pencil-square"></i> Administrar
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
