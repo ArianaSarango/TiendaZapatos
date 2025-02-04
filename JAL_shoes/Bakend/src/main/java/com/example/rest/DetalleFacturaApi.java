@@ -72,18 +72,12 @@ public class DetalleFacturaApi {
 
         try {
 
-            if (map.get("device")!= null && map.get("details") != null) {
-                ProductoServices ps = new ProductoServices();
-                ps.setProducto(ps.get(Integer.parseInt(map.get("device").toString())));
-            }
-
             DetalleFacturaServicies dfs = new DetalleFacturaServicies();
 
             dfs.getDetalleFactura().setId(Integer.parseInt(map.get("id").toString())); // int
-            dfs.getDetalleFactura().setIdProducto(Integer.parseInt(map.get("idProducto").toString())); // int
-            dfs.getDetalleFactura().setPrecioProducto(Double.parseDouble(map.get("precioProducto").toString())); // Double
             dfs.getDetalleFactura().setCantidadProductos(Integer.parseInt(map.get("cantidadProductos").toString())); // int
-
+            dfs.getDetalleFactura().setPrcUnidad(Integer.parseInt(map.get("prcUnidad").toString())); // int
+            dfs.getDetalleFactura().setPrcTotal(Integer.parseInt(map.get("prcTotal").toString())); // int
             dfs.save();
             res.put("msg", "Ok");
             res.put("data", "Guardado correctamente");
@@ -110,10 +104,9 @@ public class DetalleFacturaApi {
             DetalleFacturaServicies dfs = new DetalleFacturaServicies();
 
             dfs.getDetalleFactura().setId(Integer.parseInt(map.get("id").toString())); // int
-            dfs.getDetalleFactura().setIdProducto(Integer.parseInt(map.get("idProducto").toString())); // int
-            dfs.getDetalleFactura().setPrecioProducto(Double.parseDouble(map.get("precioProducto").toString())); // Double
             dfs.getDetalleFactura().setCantidadProductos(Integer.parseInt(map.get("cantidadProductos").toString())); // int
-
+            dfs.getDetalleFactura().setPrcUnidad(Integer.parseInt(map.get("prcUnidad").toString())); // int
+            dfs.getDetalleFactura().setPrcTotal(Integer.parseInt(map.get("prcTotal").toString())); // int
             dfs.save();
             res.put("msg", "Ok");
             res.put("data", "Detalle guardado correctamente");

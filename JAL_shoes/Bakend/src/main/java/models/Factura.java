@@ -3,14 +3,15 @@ package models;
 import java.util.Date;
 
 public class Factura {
-    private Integer idFactura;
-    private int numeroFactura;
-    private String fechaEmision;
-    private Double subtotal;
+    private Integer id;
+    private Date fechaEmision;
+    private String numeroFactura;
     private float IVA;
-    private float descuento;
+    private Double subtotal;
     private Double totalFactura;
     private EstadoPago estadoPago;
+    private String codProducto;
+
 
     // constructor
 
@@ -31,26 +32,34 @@ public class Factura {
     // getters and setters
 
     public int getIdFactura() {
-        return this.idFactura;
+        return this.id;
     }
 
-    public void setIdFactura(Integer idFactura) {
-        this.idFactura = idFactura;
+    public void setIdFactura(Integer id) {
+        this.id = id;
     }
 
-    public int getNumeroFactura() {
+    public String getNumeroFactura() {
         return this.numeroFactura;
     }
+    
+    public String getcodProducto() {
+        return this.codProducto;
+    }
 
-    public void setNumeroFactura(int numeroFactura) {
+    public void setcodProducto(String codProducto) {
+        this.codProducto = codProducto;
+    }
+
+    public void setNumeroFactura(String numeroFactura) {
         this.numeroFactura = numeroFactura;
     }
 
-    public String getFechaEmision() {
+    public Date getFechaEmision() {
         return this.fechaEmision;
     }
 
-    public void setFechaEmision(String fechaEmision) {
+    public void setFechaEmision(Date fechaEmision) {
         this.fechaEmision = fechaEmision;
     }
 
@@ -68,14 +77,6 @@ public class Factura {
 
     public void setIVA(float IVA) {
         this.IVA = IVA;
-    }
-
-    public float getDescuento() {
-        return this.descuento;
-    }
-
-    public void setDescuento(float descuento) {
-        this.descuento = descuento;
     }
 
     public Double getTotalFactura() {

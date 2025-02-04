@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "cantidadProductos": 2,
+        "prcUnidad": 50,
+        "prcTotal": 100,
+        "idDetalleFactura": 1
+    },
+    {
+        "id": 2,
+        "cantidadProductos": 1,
+        "prcUnidad": 12,
+        "prcTotal": 12,
+        "idDetalleFactura": 1
+    }
+]

@@ -1,21 +1,26 @@
 package models;
 
+import java.sql.Date;
+import java.util.UUID;
+
 public class DetalleFactura {
-    private int id;
-    private int idProducto;
-    private Double precioProducto;
-    private Persona cliente;
-    private int cantidadProductos;
+    private Integer id;
+    private Integer cantidadProductos;
+    private Integer prcUnidad;
+    private Integer prcTotal;
+
+   
+    
     private int idDetalleFactura;
 
     // constructor
 
-    public DetalleFactura(int id, int idProducto, Double precioProducto, Persona cliente, int cantidadProductos){
-        this.idProducto = idProducto;
-        this.precioProducto = precioProducto;
-        this.cliente = cliente;
+    public DetalleFactura(Integer id, Integer prcTotal, Integer prcUnidad, Integer cantidadProductos){
+
         this.cantidadProductos = cantidadProductos;
         this.id = id;
+        this.prcUnidad = prcUnidad;
+        this.prcTotal = prcTotal;
 
     }
 
@@ -24,11 +29,27 @@ public class DetalleFactura {
 
     // getters and setters
 
-    public int getIdDetalleFactura() {
+    public Integer getPrcUnidad() {
+        return prcUnidad;
+    }
+
+    public void setPrcUnidad(Integer prcUnidad) {
+        this.prcUnidad = prcUnidad;
+    }
+
+    public Integer getPrcTotal() {
+        return prcTotal;
+    }
+
+    public void setPrcTotal(Integer prcTotal) {
+        this.prcTotal = prcTotal;
+    }
+
+    public Integer getIdDetalleFactura() {
         return idDetalleFactura;
     }
 
-    public void setIdDetalleFactura(int idDetalleFactura) {
+    public void setIdDetalleFactura(Integer idDetalleFactura) {
         this.idDetalleFactura = idDetalleFactura;
     }
 
@@ -38,37 +59,13 @@ public class DetalleFactura {
 
     public void setId(int id) {
         this.id = id;
-    }
-    
-    public int getIdProducto() {
-        return this.idProducto;
-    }
+    } 
 
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
-    }
-
-    public Double getPrecioProducto() {
-        return this.precioProducto;
-    }
-
-    public void setPrecioProducto(Double precioProducto) {
-        this.precioProducto = precioProducto;
-    }
-
-    public Persona getCliente() {
-        return this.cliente;
-    }
-
-    public void setCliente(Persona cliente) {
-        this.cliente = cliente;
-    }
-
-    public int getCantidadProductos() {
+    public Integer getCantidadProductos() {
         return this.cantidadProductos;
     }
 
-    public void setCantidadProductos(int cantidadProductos) {
+    public void setCantidadProductos(Integer cantidadProductos) {
         this.cantidadProductos = cantidadProductos;
     }
     

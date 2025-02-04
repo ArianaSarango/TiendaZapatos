@@ -1,19 +1,19 @@
 package controller.Dao;
 
 import models.Producto;
-import models.Producto;
 import controller.Dao.implement.AdapterDao;
 import controller.tda.list.LinkedList;
+import controller.tda.list.ListEmptyException;
 
 public class ProductoDao extends AdapterDao<Producto> {
     private Producto producto = new Producto();
     private LinkedList<Producto> listAll;
 
-    // public void setIdProducto(Producto producto) {
+    public void setIdProducto(Producto producto) {
+        this.producto = producto;
+    }
 
-    // }
-
-    public ProductoDao(){
+    public ProductoDao() {
         super(Producto.class);
         this.listAll = new LinkedList<>();
     }
@@ -25,13 +25,13 @@ public class ProductoDao extends AdapterDao<Producto> {
         return this.producto;
     }
 
-    public void setProducto(Producto producto){
+    public void setProducto(Producto producto) {
         this.producto = producto;
     }
 
-    public LinkedList<Producto> getlistAll(){
-        if (listAll.isEmpty()) {
-            this.listAll = listAll();
+    public LinkedList<Producto> getlistAll() {
+        if (listAll == null || listAll.isEmpty()) {
+            this.listAll = listAll(); 
         }
         return listAll;
     }
@@ -55,9 +55,9 @@ public class ProductoDao extends AdapterDao<Producto> {
         }
     }
 
-     public Boolean delete(int idProducto) throws Exception {
+    public Boolean delete(int idProducto) throws Exception {
         LinkedList<Producto> productos = listAll(); // Obtener todas las productos
-    
+
         // Buscar el índice de la producto con el ID dado
         int indexToRemove = -1;
         for (int i = 0; i < productos.getSize(); i++) {
@@ -66,7 +66,7 @@ public class ProductoDao extends AdapterDao<Producto> {
                 break;
             }
         }
-    
+
         if (indexToRemove != -1) {
             // Si se encuentra el índice, eliminar la producto
             supreme(indexToRemove);
@@ -91,4 +91,17 @@ public class ProductoDao extends AdapterDao<Producto> {
             return false;
         }
     }
+
+    public Producto get(Integer id) throws IndexOutOfBoundsException, ListEmptyException {
+        System.out.println("Lista de productos disponibles:");
+        for (int i = 0; i < getlistAll().getSize(); i++) {
+            System.out.println("ID=" + getlistAll().get(i).getIdProducto() +
+                    ", Código=" + getlistAll().get(i).getCodigo());
+            if (getlistAll().get(i).getIdProducto() == id) {
+                return getlistAll().get(i);
+            }
+        }
+        return null;
+    }
+
 }

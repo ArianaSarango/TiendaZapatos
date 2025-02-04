@@ -32,9 +32,9 @@ public class ProductoServices {
         return obj.getProducto();
     }
 
-    // public void setIdProducto( Producto producto){
-    //     obj.setIdProducto(producto);
-    // }
+    public void setIdProducto( Producto producto){
+        obj.setIdProducto(producto);
+    }
 
     public Producto get(Integer id) throws Exception {
         return obj.get(id);

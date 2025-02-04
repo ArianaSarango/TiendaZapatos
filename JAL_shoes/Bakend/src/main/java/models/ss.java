@@ -56,3 +56,106 @@
 //         }
 //     }
 // }
+
+
+///
+/// 
+/// 
+// <!-- End Header -->
+// <!-- <script>
+//     $(document).ready(function(){
+
+//         function crear_tabla(detalle){
+//             //3,2,8,
+//             var html = "";
+//             var subtotal = 0.0;
+//             var iva =0.0;
+//             var total = 0.0;
+//             if (detalle.length > 0){
+//                 detalle = detalle.substring(0, detalle.length - 1);
+//                 var res = detalle.split(":");
+//                 for (var i = 0; i < res.length; i++){
+//                     var aux = res[i].split(",");
+//                     //
+//                     //
+//                     subtotal += parseInt(aux[2])+parseFloat(aux[1]);
+//                     html += "<tr>";
+//                     html += "<td>"+aux[1]+"</td><td>"+aux[3]+"</td><td>"+aux[2]+"</td><td>"+(parseFloat(aux[2])*parseFloat(aux[1]))+"</td>";
+//                     html += "</tr>";
+//                 }
+//                 iva = subtotal * 0.15;
+//                 total = subtotal + iva;
+//             } else {
+//                 html = "<tr><td>No hay productos</td></tr>";
+//             }
+//             $("#txtsubtotal").val("$"+subtotal.toFixed(2));
+//             $("#txtiva").val("$"+iva.toFixed(2));
+//             $("#txttotal").val("$"+total.toFixed(2));
+//             return html;
+//         }
+//         function crear_input(data){
+//            //
+//            var detalle = $("#txtDetalle").val();
+//            var resp = "";
+//            if (detalle.length > 0) {
+//             detalle = detalle.substring(0, detalle.length - 1);
+//             var res = detalle.split(":");
+//             var band = true;
+//             for (var i = 0; i < res.length; i++){
+//                 var aux = res[i].split(",");
+//                 if (aux[0] == data.data.id){
+//                     aux[1] = (aux[1]*1)+1;
+//                     band = false;
+//                     res += aux[0]+","+aux[1]+","+aux[2]+","+aux[3]+":";
+//                     //break;  
+//                 } else {
+//                     resp += aux[0]+","+aux[1]+","+aux[2]+","+aux[3]+":";
+//                 }
+//             }
+//             if (band){
+//                 resp += data.data.id+",1,"+data.data.PrecioTotal+","+data.data.Nombre+":";
+//             }
+//            } else {
+//                  resp = data.data.id+",1,"+data.data.PrecioTotal+","+data.data.Nombre+":";
+//            }
+//             return resp;
+//         }
+
+//         function search_producto() {
+//         var texto = $("#txtcode").val();
+//         var detalle = $("#detalle").val();
+//         var url = "http://localhost:8086/api/producto/code/" + texto;
+//         $.ajax({
+//             url: url,
+//             success: function (data) {
+//                 //console.log(data);
+
+//                 if (data.msg == "OK") {
+//                     //var aux = data.data.id+",1"+","+data.data.Nombre;
+//                     detalle = crear_input(data);
+//                     $("#txtdetalle").val(detalle);
+//                     $("#table tbody").html(crear_tabla(detalle));
+
+//                     //console.log(data.data);
+//                 } else {
+//                     //Products.val("");
+//                     //producto.val("No existe el Producto");
+
+//                 }
+//                 //console.log(data);
+//             },
+//             error: function (xhr, ajaxOptions, throwError){
+//                 //producto.val("");
+//                 //producto.val("No existe el Producto");
+//                 //alert(xhr.status);
+//                 //alert(throwError);
+//             }
+//         })
+//         //btncode
+//         //txtdetalle
+//     }
+    
+
+//     })
+    
+// </script> -->
